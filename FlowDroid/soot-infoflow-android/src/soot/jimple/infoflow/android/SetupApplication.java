@@ -1122,8 +1122,6 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 
 		// Load whatever we need
 		logger.info("Loading dex files...");
-		int a = Scene.v().getClasses().size();
-		logger.info("***** number of classes loaded already" + a);
 		Scene.v().loadNecessaryClasses();
 
 		// Make sure that we have valid Jimple bodies
@@ -1370,7 +1368,6 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 
 		// POINT Start a new Soot instance
 		if (config.getSootIntegrationMode() == SootIntegrationMode.CreateNewInstace) {
-			logger.info("=++++++ create new instance ++++++");
 			G.reset();
 			initializeSoot();
 		}
@@ -1532,7 +1529,7 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 	 * and run the packs
 	 */
 	private void addWearIntrumentation(List<SootClass> toInstrument) {
-		logger.info("=++++++ wear instrumentation ++++++");
+		logger.info("Running Wear Instrumentation");
 
 		List<StringResult> result = new ArrayList<>();
 		String packageName = manifest.getPackageName();
@@ -1557,7 +1554,7 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 	}
 
 	private List<SootClass> deobfuscateApp() {
-		logger.info("=++++++ Deobfuscator ++++++");
+		logger.info("Running Deobfuscator");
 		DeobfuscatorSceneTransformer deobfuscator = new DeobfuscatorSceneTransformer(
 				config.getAnalysisFileConfig().getTargetAPKFile());
 		PackManager.v().getPack("wjtp").add(new Transform("wjtp.MyDeobfuscation", deobfuscator));//
