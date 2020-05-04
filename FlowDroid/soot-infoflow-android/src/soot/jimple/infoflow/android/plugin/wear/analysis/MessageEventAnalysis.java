@@ -116,6 +116,9 @@ public class MessageEventAnalysis {
 
 			if (index == 0)
 				keepSearching = false;
+			
+			if (slice.size() < index)
+				continue;
 
 			Unit unit = slice.get(--index);
 			iexpr = utilInstance.getInvokeExpr(unit);
